@@ -1,0 +1,63 @@
+import cosas.*
+import camion.*
+
+describe "testsCamion" {
+	
+	method initialize() {
+		bumblebee.transformar()
+		arenaAGranel.definirCantidad(150)
+		bateriaAntiaerea.cargarMisiles()
+		paqueteDeLadrillos.definirCantidad(80)
+		embalajeDeSeguridad.embalar(paqueteDeLadrillos)	
+		
+		camion.cargar(bumblebee)
+		camion.cargar(arenaAGranel)
+		camion.cargar(bateriaAntiaerea)
+		camion.cargar(embalajeDeSeguridad)
+	}
+	
+	test "todoPesoParTest" {
+		assert.that(camion.todoPesoPar())
+	}
+	
+	test "hayAlgunoQuePesa160Test" {
+		assert.that(camion.hayAlgunoQuePesa(160))
+	}
+	
+	test "primerCosaDelNivel100Test" {
+		assert.equals(bateriaAntiaerea, camion.elDeNivel(100))
+	}
+	
+	test "pesoTotalTest" {
+		assert.equals(2410, camion.pesoTotal())
+	}
+	
+	test "excedidoDePesoTest" {
+		assert.that(!camion.excedidoDePeso())
+	}
+	
+	test "objetosQueSuperanPeligrosidad60Test" {
+		assert.equals([bateriaAntiaerea], camion.objetosQueSuperanPeligrosidad(60))
+	}
+	
+	test "objetosMAsPeligrososQuePaqueteDeLadrillosTest" {
+		assert.equals([bumblebee, bateriaAntiaerea], camion.objetosMasPeligrososQue(paqueteDeLadrillos))
+	}
+	
+	test "puedeCircularEnRutaNivel90Test" {
+		assert.that(!camion.puedeCircularEnRuta(90))
+	}
+	
+	test "tienAlgoQuePesaEntre100y200Test" {
+		assert.that(camion.tieneAlgoQuePesaEntre(100, 200))
+	}
+	
+	test "cosaMasPesadaTest" {
+		assert.equals(bumblebee, camion.cosaMasPesada())
+	}
+	
+	test "pesosTest" {
+		assert.equals([800, 150, 300, 160], camion.pesos())
+	}
+}
+

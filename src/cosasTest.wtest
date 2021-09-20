@@ -1,0 +1,42 @@
+import cosas.*
+
+test "paqueteDeLadrillos" {
+	paqueteDeLadrillos.definirCantidad(10)
+	
+	assert.equals(20, paqueteDeLadrillos.peso())
+	assert.equals(2, paqueteDeLadrillos.nivelPeligrosidad())
+}
+
+test "bateriaAntiereaCargada" {
+	bateriaAntiaerea.cargarMisiles()
+	
+	assert.equals(300, bateriaAntiaerea.peso())
+	assert.equals(100, bateriaAntiaerea.nivelPeligrosidad())
+}
+
+test "bateriaAntiereaDescargada" {
+	bateriaAntiaerea.descargarMisiles()
+	
+	assert.equals(200, bateriaAntiaerea.peso())
+	assert.equals(0, bateriaAntiaerea.nivelPeligrosidad())
+}
+
+test "contenedorPortuario" {
+	arenaAGranel.definirCantidad(200)
+	
+	contenedorPortuario.cargar(arenaAGranel)
+	contenedorPortuario.cargar(bumblebee)
+	contenedorPortuario.cargar(knightRider)
+	
+	assert.equals(1600, contenedorPortuario.peso())
+	assert.equals(15, contenedorPortuario.nivelPeligrosidad())
+}
+
+test "embalajeDeSeguridad" {
+	residuosRadioactivos.definirCantidad(30)
+	
+	embalajeDeSeguridad.embalar(residuosRadioactivos)
+	
+	assert.equals(30, embalajeDeSeguridad.peso())
+	assert.equals(100, embalajeDeSeguridad.nivelPeligrosidad())
+}

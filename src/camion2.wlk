@@ -1,14 +1,17 @@
-import cosas.*
+import cosas2.*
 
 object camion {
 	const property cosas = []
 	
-	method cargar(unaCosa) {
-		cosas.add(unaCosa)
+	method cargar(cosa) {
+		if (0.randomUpTo(3) >= 2) {
+			cosa.reaccionar()	
+		}
+		cosas.add(cosa)
 	}
 	
-	method descargar(unacosa) {
-		cosas.remove(unacosa)
+	method descargar(cosa) {
+		cosas.remove(cosa)
 	}
 	
 	method todoPesoPar() {
@@ -20,7 +23,7 @@ object camion {
 	}
 	
 	method elDeNivel(nivel) {
-		return cosas.filter({cosa => cosa.nivelPeligrosidad() == nivel}).get(0)
+		return cosas.filter({cosa => cosa.nivelPeligrosidad() == nivel}).first()
 	}
 	
 	method pesoTotal() {
@@ -54,4 +57,9 @@ object camion {
 	method pesos() {
 		return cosas.map({cosa => cosa.peso()})
 	}
+	
+	method totalBultos() {
+		return cosas.sum({cosa => cosa.bultos()})
+	} 
 }
+
